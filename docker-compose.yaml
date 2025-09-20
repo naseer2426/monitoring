@@ -20,7 +20,7 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin   # change!
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
       - grafana-data:/var/lib/grafana
     depends_on:
@@ -42,7 +42,7 @@ services:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     ports:
-      - "8080:8080"   # optional UI
+      - "8081:8080"   # optional UI
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /sys:/sys:ro
