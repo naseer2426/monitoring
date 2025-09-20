@@ -31,12 +31,18 @@ services:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node-exporter
     pid: "host"
-    network_mode: "host"
-    restart: unless-stopped
     command:
       - "--path.rootfs=/host"
+    expose:
+      - "9100"                # makes the port reachable on the compose network
+    # optional – only if you also want to reach it from the host:
+    # ports:
+    #   - "9100:9100"
     volumes:
       - "/:/host:ro,rslave"
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+    restart: unless-stopped
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
