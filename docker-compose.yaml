@@ -3,17 +3,15 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
-    entrypoint:
-      - /bin/sh
-      - -c
-      - |
-        envsubst < /etc/prometheus/prometheus.yml.tmpl > /etc/prometheus/prometheus.yml
-        exec /bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-admin-api
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-admin-api"
     environment:
       - NODE_EXPORTER_TARGET=${NODE_EXPORTER_TARGET:-node-exporter:9100}
       - CADVISOR_TARGET=${CADVISOR_TARGET:-cadvisor:8080}
     volumes:
-      - ./prometheus/prometheus.yml.tmpl:/etc/prometheus/prometheus.yml.tmpl:ro
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
     ports:
       - "9090:9090"
