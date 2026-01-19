@@ -7,6 +7,9 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
       - "--web.enable-admin-api"
+    environment:
+      - NODE_EXPORTER_TARGET=${NODE_EXPORTER_TARGET:-node-exporter:9100}
+      - CADVISOR_TARGET=${CADVISOR_TARGET:-cadvisor:8080}
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
