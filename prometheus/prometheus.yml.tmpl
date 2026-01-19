@@ -6,9 +6,9 @@ scrape_configs:
   # Host metrics
   - job_name: node
     static_configs:
-      - targets: ["node-exporter:9100"]
+      - targets: ["${NODE_EXPORTER_TARGET}"]
 
   # Container metrics
   - job_name: cadvisor
     static_configs:
-      - targets: ["cadvisor:8080"]
+      - targets: ["${CADVISOR_TARGET}"]
