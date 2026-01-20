@@ -12,3 +12,8 @@ scrape_configs:
   - job_name: cadvisor
     static_configs:
       - targets: ["cadvisor-y48k448wwksc4cckwgc0s4gw:8080"]
+
+  # Business metrics
+  - job_name: splitbot
+    static_configs:
+      - targets: ["ng4ocswkog8cg8ogc808o4ko:3000"]
