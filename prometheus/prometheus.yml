@@ -17,3 +17,8 @@ scrape_configs:
   - job_name: splitbot
     static_configs:
       - targets: ["ng4ocswkog8cg8ogc808o4ko:3000"]
+
+  - job_name: common-business-metrics
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["jc4wswcs88oo80wks8cso8sw:3000"]
